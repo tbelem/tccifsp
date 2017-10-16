@@ -1,0 +1,30 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">MyQuest Survey</string>
+
+    <!-- Login Activity -->
+    <string name="btCadastrar">Cadastrar</string>
+    <string name="btLogin">ENTRAR</string>
+    <string name="hintEmail">Email</string>
+    <string name="hintSenha">Senha</string>
+    <string name="linkEsquecimento"><b>Esqueceu sua senha ?</b></string>
+    <string name="linkCadastro">Ainda não possui uma conta ? <b>Cadastre-se.</b></string>
+
+    <!-- Home Activity -->
+    <string name="txSaldo">Saldo Atual:</string>
+    <string name="btUtilizar">Utilizar Créditos</string>
+    <string name="headerPendentes">Questionários Pendentes</string>
+    <string name="acesseSite">Acesse nosso site !</string>
+
+    <!-- Use Activity -->
+    <string name="lbUseTitle">Utilizar Créditos</string>
+    <string name="txDeposito">Depósito Bancário</string>
+    <string name="txEscolha">Escolha uma opção:</string>
+
+    <!-- Alternativa Activity -->
+    <string name="btAnterior">&lt; Anterior</string>
+    <string name="btProximo">Proximo &gt;</string>
+    <string name="textoTeste">Como você avalia sua experiência geral na última vez que você visitou o Instituto Federal de São Paulo ?</string>
+
+
+</resources>

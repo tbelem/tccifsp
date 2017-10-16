@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#152370</color>
+    <color name="colorPrimaryDark">#080f33</color>
+    <color name="colorAccent">#152370</color>
+    <color name="colorSecondary">#22761e</color>
+    <color name="colorSecondaryDark">#11390f</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#ffffff</color>
+    <color name="creditColor">#ffd700</color>
+</resources>

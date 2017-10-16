@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="LogoWidth">150dp</dimen>
+    <dimen name="LogoHeight">120dp</dimen>
+    <dimen name="titleSize">20sp</dimen>
+    <dimen name="LabelSize">18sp</dimen>
+    <dimen name="ListItemSize">30dp</dimen>
+    <dimen name="ImageDesc">16dp</dimen>
+</resources>
