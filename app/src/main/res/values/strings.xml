@@ -9,12 +9,15 @@
     <string name="hintSenha">Senha</string>
     <string name="linkEsquecimento"><b>Esqueceu sua senha ?</b></string>
     <string name="linkCadastro">Ainda não possui uma conta ? <b>Cadastre-se.</b></string>
+    <string name="emailBranco">Informe o email !</string>
+    <string name="senhaBranco">Informe a senha !</string>
+    <string name="falhaLogin">Falha ao logar !</string>
 
     <!-- Home Activity -->
     <string name="txSaldo">Saldo Atual:</string>
     <string name="btUtilizar">Utilizar Créditos</string>
     <string name="headerPendentes">Questionários Pendentes</string>
-    <string name="acesseSite">Acesse nosso site !</string>
+    <string name="LogOut">Sair</string>
 
     <!-- Use Activity -->
     <string name="lbUseTitle">Utilizar Créditos</string>

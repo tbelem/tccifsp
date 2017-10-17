@@ -7,7 +7,22 @@
     tools:context="proj.ifsp.tcc1.Activity.HomeActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lbEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:text="tiago.mb95@gmail.com"
+        android:textColor="@color/disabledLabel"
+        android:textSize="@dimen/LabelSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.37" />
+
+    <TextView
+        android:id="@+id/lbSaldoDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,7 +53,7 @@
         tools:layout_editor_absoluteX="365dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/lbSaldoValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -48,17 +63,17 @@
         android:textSize="@dimen/titleSize"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/lbSaldoDesc" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btUtilizar"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="4dp"
         android:layout_marginEnd="7dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounder_button"
-        android:elevation="0dp"
+        android:onClick="Utilizar"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:text="@string/btUtilizar"
@@ -81,27 +96,27 @@
         android:layout_marginEnd="8dp"
         android:id="@+id/view"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/lbSaldoValor" />
 
     <ListView
-        android:id="@+id/ListView1"
+        android:id="@+id/listPendentes"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="0dp"
         android:background="@drawable/pendentes_border"
         android:divider="@color/colorSecondaryDark"
         android:dividerHeight="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/guideline5"
         app:layout_constraintRight_toLeftOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/lbHeaderPendentes" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/lbHeaderPendentes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -139,22 +154,21 @@
         app:layout_constraintGuide_percent="0.85" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/lbLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
-        android:drawableStart="@drawable/ic_site"
-        android:text="@string/acesseSite"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="0dp"
+        android:drawablePadding="7dp"
+        android:drawableStart="@drawable/ic_power"
+        android:onClick="Logout"
+        android:text="@string/LogOut"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/LabelSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
         app:layout_constraintRight_toLeftOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.39999998" />
+        app:layout_constraintVertical_bias="0.388" />
 
 </android.support.constraint.ConstraintLayout>

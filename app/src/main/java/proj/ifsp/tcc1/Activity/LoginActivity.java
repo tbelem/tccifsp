@@ -45,13 +45,28 @@ public class LoginActivity extends AppCompatActivity {
 
         if (currentUser != null) {
             Intent intentHome = new Intent(LoginActivity.this, HomeActivity.class);
+            intentHome.putExtra("userEmail",currentUser.getEmail());
+            intentHome.putExtra("userUID",currentUser.getUid());
             startActivity(intentHome);
             finish();
         }
     }
 
     public void Entrar(View v){
-        mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
+        String email = txtEmail.getText().toString();
+        String senha = txtSenha.getText().toString();
+
+        if (email.equals("")){
+            Toast.makeText(this, R.string.emailBranco,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (senha.equals("")){
+            Toast.makeText(this, R.string.senhaBranco,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email,senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -61,13 +76,15 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             Intent intentHome = new Intent(LoginActivity.this, HomeActivity.class);
+                            intentHome.putExtra("userEmail",user.getEmail());
+                            intentHome.putExtra("userUID",user.getUid());
                             startActivity(intentHome);
                             finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("LoginLog", "Falha ao logar !", task.getException());
-                            Toast.makeText(LoginActivity.this, "Falha ao logar.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.falhaLogin,Toast.LENGTH_LONG).show();
                         }
 
                         // ...
