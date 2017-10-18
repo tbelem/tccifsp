@@ -12,10 +12,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import proj.ifsp.tcc1.R;
+import proj.ifsp.tcc1.Util.InstanceFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private String userUID;
+    private FirebaseAuth firebaseAuth;
 
     private TextView lblEmail;
     private TextView lblSaldoValor;
@@ -28,8 +29,9 @@ public class HomeActivity extends AppCompatActivity {
         lblEmail = (TextView) findViewById(R.id.lbEmail);
         lblSaldoValor = (TextView) findViewById(R.id.lbSaldoValor);
 
-        lblEmail.setText(this.getIntent().getStringExtra("userEmail"));
-        userUID = this.getIntent().getStringExtra("userUID");
+        firebaseAuth = InstanceFactory.getAuthInstance();
+
+        lblEmail.setText(firebaseAuth.getCurrentUser().getEmail());
 
         lblSaldoValor.setText("0");
 
@@ -57,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void Logout(View v){
-        FirebaseAuth.getInstance().signOut();
+        firebaseAuth.signOut();
 
         Intent intentLogin = new Intent(this, LoginActivity.class);
         startActivity(intentLogin);

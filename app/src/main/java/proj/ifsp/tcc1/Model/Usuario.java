@@ -14,9 +14,7 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getUID() {
-        return UID;
-    }
+    public String getUID() { return UID; }
 
     public void setUID(String UID) {
         this.UID = UID;

@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import proj.ifsp.tcc1.R;
+import proj.ifsp.tcc1.Util.InstanceFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = InstanceFactory.getAuthInstance();
 
         txtEmail = (EditText) findViewById(R.id.txEmail);
         txtSenha = (EditText) findViewById(R.id.txSenha);
@@ -71,18 +72,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d("LoginLog","Logado com sucesso !");
-                            FirebaseUser user = mAuth.getCurrentUser();
 
                             Intent intentHome = new Intent(LoginActivity.this, HomeActivity.class);
-                            intentHome.putExtra("userEmail",user.getEmail());
-                            intentHome.putExtra("userUID",user.getUid());
                             startActivity(intentHome);
                             finish();
 
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w("LoginLog", "Falha ao logar !", task.getException());
                             Toast.makeText(LoginActivity.this, R.string.falhaLogin,Toast.LENGTH_LONG).show();
                         }
