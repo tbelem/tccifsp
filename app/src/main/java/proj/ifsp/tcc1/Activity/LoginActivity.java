@@ -82,8 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w("LoginLog", "Falha ao logar !", task.getException());
                             Toast.makeText(LoginActivity.this, R.string.falhaLogin,Toast.LENGTH_LONG).show();
                         }
-
-                        // ...
                     }
                 });
     }
