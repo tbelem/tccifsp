@@ -13,6 +13,7 @@ import java.util.List;
 
 import proj.ifsp.tcc1.Model.Questionario;
 import proj.ifsp.tcc1.R;
+import proj.ifsp.tcc1.Util.DateConverter;
 
 
 /**
@@ -51,12 +52,8 @@ public class PendentesAdapter extends BaseAdapter {
         TextView txData_Inicio = (TextView) item_layout.findViewById(R.id.pendentes_data_inicio);
         TextView txData_Fim = (TextView) item_layout.findViewById(R.id.pendentes_data_fim);
 
-        //txData_Inicio.setText("Início: " + pendentes.get(i).getInicio());
-        //txData_Fim.setText("Expira em: " + pendentes.get(i).getFim());
-
-        txData_Inicio.setText("Início: " + "20/07/2017");
-        txData_Fim.setText("Expira em: " + "31/10/2017");
-
+        txData_Inicio.setText("Início: " + DateConverter.timestampToStringDate(pendentes.get(i).getInicio()));
+        txData_Fim.setText("Expira em: " + DateConverter.timestampToStringDate(pendentes.get(i).getFim()));
 
         return item_layout;
     }

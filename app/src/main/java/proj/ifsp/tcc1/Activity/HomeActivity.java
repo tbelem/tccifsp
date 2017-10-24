@@ -16,15 +16,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 
 import proj.ifsp.tcc1.Adapter.PendentesAdapter;
 import proj.ifsp.tcc1.Model.Questionario;
 import proj.ifsp.tcc1.R;
+import proj.ifsp.tcc1.Util.DateConverter;
 import proj.ifsp.tcc1.Util.InstanceFactory;
 
 public class HomeActivity extends AppCompatActivity {
@@ -60,38 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("pendentes");
         montaListenerPendentes();
 
-        /*ArrayList<Questionario> pendentes = new ArrayList<>();
-
-        Questionario q1 = new Questionario("345",1507172400,1508295600,30);
-        Questionario q2 = new Questionario("567",1503198000,1511146800,15);
-
-        pendentes.add(q1);
-        pendentes.add(q2);
-
-        PendentesAdapter pa = new PendentesAdapter(this,pendentes);
-        pendentesList.setAdapter(pa);
-
-          katlista [] = {
-                "Início: 20/07/2017 | Expira em: 20 minutos",
-                "Início: 05/08/2017 | Expira em: 5 dias",
-                "Início: 17/08/2017 | Expira em: 5 dias",
-                "Início: 20/08/2017 | Expira em: 10 dias",
-                "Início: 14/09/2017 | Expira em: indefinido",
-                "Início: 24/09/2017 | Expira em: 120 dias",
-                "Início: 20/07/2017 | Expira em: 20 minutos",
-                "Início: 05/08/2017 | Expira em: 5 dias",
-                "Início: 17/08/2017 | Expira em: 5 dias",
-                "Início: 20/08/2017 | Expira em: 10 dias",
-                "Início: 14/09/2017 | Expira em: indefinido",
-                "Início: 24/09/2017 | Expira em: 120 dias"
-        };
-
-        ListView contact = (ListView) findViewById(R.id.listPendentes);
-        contact.setAdapter(new ArrayAdapter<String>(this, R.layout.pendentes_item,katlista));
-
-        ListView contact = (ListView) findViewById(R.id.ListView1);
-        View header = getLayoutInflater().inflate(R.layout.pendentes_header, null);
-        contact.addHeaderView(header);*/
+        Log.d("testeDate", String.valueOf(DateConverter.stringDateToTimestamp("08/02/1995")));
     }
 
     @Override
