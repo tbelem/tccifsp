@@ -1,5 +1,7 @@
 package proj.ifsp.tcc1.Model;
 
+import com.google.firebase.database.Exclude;
+
 /**
  * Created by Tiago on 16/10/2017.
  */
@@ -22,6 +24,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() { return senha; }
 
     public void setSenha(String senha) { this.senha = senha;  }
@@ -34,14 +37,17 @@ public class Usuario {
 
     public void setNascimento(long nascimento) { this.nascimento = nascimento; }
 
+    @Exclude
     public Questionario[] getPendentes() { return pendentes;  }
 
     public void setPendentes(Questionario[] pendentes) { this.pendentes = pendentes;  }
 
+    @Exclude
     public Regiao[] getRegioes() { return regioes;  }
 
     public void setRegioes(Regiao[] regioes) { this.regioes = regioes;  }
 
+    @Exclude
     public String getUID() { return UID; }
 
     public void setUID(String UID) {

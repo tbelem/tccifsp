@@ -10,16 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.MainActivity" >
+        </activity>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/Barless" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activity.LoginActivity"
-            android:theme="@style/Barless" >
-            <!-- main aqui -->
         </activity>
         <activity android:name=".Activity.HomeActivity"></activity>
         <activity android:name=".Activity.UseActivity"></activity>

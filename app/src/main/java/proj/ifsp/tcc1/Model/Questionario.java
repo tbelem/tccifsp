@@ -16,6 +16,13 @@ public class Questionario {
     public Questionario() {
     }
 
+    public Questionario(String id, long inicio, long fim, int recompensa) {
+        this.id = id;
+        this.inicio = inicio;
+        this.fim = fim;
+        this.recompensa = recompensa;
+    }
+
     public String getId() {
         return id;
     }
