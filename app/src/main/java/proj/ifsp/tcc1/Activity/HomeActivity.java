@@ -35,6 +35,12 @@ public class HomeActivity extends AppCompatActivity {
     private TextView lblSaldoValor;
     private ListView pendentesList;
 
+    private DatabaseReference saldoReference;
+    private DatabaseReference pendentesReference;
+
+    private ValueEventListener listenerSaldo;
+    private ValueEventListener listenerPendentes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +54,13 @@ public class HomeActivity extends AppCompatActivity {
 
         lblEmail.setText(firebaseAuth.getCurrentUser().getEmail());
 
-        buscarSaldo(firebaseAuth.getCurrentUser().getUid());
+        saldoReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("saldo");
+        montaListenerSaldo();
 
+        pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("pendentes");
+        montaListenerPendentes();
 
-
-        ArrayList<Questionario> pendentes = new ArrayList<>();
+        /*ArrayList<Questionario> pendentes = new ArrayList<>();
 
         Questionario q1 = new Questionario("345",1507172400,1508295600,30);
         Questionario q2 = new Questionario("567",1503198000,1511146800,15);
@@ -63,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         PendentesAdapter pa = new PendentesAdapter(this,pendentes);
         pendentesList.setAdapter(pa);
 
-        /*  katlista [] = {
+          katlista [] = {
                 "Início: 20/07/2017 | Expira em: 20 minutos",
                 "Início: 05/08/2017 | Expira em: 5 dias",
                 "Início: 17/08/2017 | Expira em: 5 dias",
@@ -86,11 +94,25 @@ public class HomeActivity extends AppCompatActivity {
         contact.addHeaderView(header);*/
     }
 
-    private void buscarSaldo(String pUID){
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        DatabaseReference usuarios = InstanceFactory.getDBInstance().getReference("usuarios").child(pUID).child("saldo");
+        saldoReference.addValueEventListener(listenerSaldo);
+        pendentesReference.addValueEventListener(listenerPendentes);
+    }
 
-        usuarios.addValueEventListener(new ValueEventListener() {
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        saldoReference.removeEventListener(listenerSaldo);
+        pendentesReference.removeEventListener(listenerPendentes);
+    }
+
+    private void montaListenerSaldo(){
+
+        listenerSaldo = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() != null) {
@@ -106,7 +128,57 @@ public class HomeActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("DATABASE ERROR",databaseError.toString());
             }
-        });
+        };
+
+    }
+
+    private void montaListenerPendentes(){
+
+        final ArrayList<Questionario> pendentes = new ArrayList<>();
+
+        final PendentesAdapter pa = new PendentesAdapter(this,pendentes);
+        pendentesList.setAdapter(pa);
+
+        listenerPendentes = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                pendentes.clear();
+
+                for (DataSnapshot row : dataSnapshot.getChildren()){
+
+                    DatabaseReference buscaQuestionario = InstanceFactory.getDBInstance().getReference("questionarios").child(row.getKey());
+
+                    buscaQuestionario.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getValue() != null) {
+                                Questionario encontrado = dataSnapshot.getValue(Questionario.class);
+                                encontrado.setId(dataSnapshot.getKey());
+                                pendentes.add(encontrado);
+                                pa.notifyDataSetChanged();
+                            }
+                            else{
+                                Log.e("DATABASE ERROR","Pendente nao encontrado !");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("DATABASE ERROR",databaseError.toString());
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("DATABASE ERROR",databaseError.toString());
+            }
+        };
+
     }
 
     public void Logout(View v){
