@@ -1,7 +1,12 @@
 package proj.ifsp.tcc1.Activity;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +35,7 @@ import java.util.Locale;
 import proj.ifsp.tcc1.Adapter.PendentesAdapter;
 import proj.ifsp.tcc1.Model.Questionario;
 import proj.ifsp.tcc1.R;
+import proj.ifsp.tcc1.Service.NotificationService;
 import proj.ifsp.tcc1.Util.DateConverter;
 import proj.ifsp.tcc1.Util.InstanceFactory;
 
@@ -65,7 +72,6 @@ public class HomeActivity extends AppCompatActivity {
         pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("pendentes");
         montaListenerPendentes();
 
-        Log.d("testeDate", String.valueOf(DateConverter.stringDateToTimestamp("08/02/1995")));
     }
 
     @Override
@@ -74,6 +80,8 @@ public class HomeActivity extends AppCompatActivity {
 
         saldoReference.addValueEventListener(listenerSaldo);
         pendentesReference.addValueEventListener(listenerPendentes);
+
+        stopService(new Intent(HomeActivity.this,NotificationService.class));
     }
 
     @Override
@@ -82,6 +90,10 @@ public class HomeActivity extends AppCompatActivity {
 
         saldoReference.removeEventListener(listenerSaldo);
         pendentesReference.removeEventListener(listenerPendentes);
+
+        if (! NotificationService.running) {
+            startService(new Intent(HomeActivity.this, NotificationService.class));
+        }
     }
 
     private void montaListenerSaldo(){
@@ -156,6 +168,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void Logout(View v){
+        stopService(new Intent(HomeActivity.this,NotificationService.class));
+
         firebaseAuth.signOut();
 
         Intent intentLogin = new Intent(this, LoginActivity.class);

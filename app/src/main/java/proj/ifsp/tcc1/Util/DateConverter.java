@@ -3,6 +3,7 @@ package proj.ifsp.tcc1.Util;
 import java.security.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -31,5 +32,13 @@ public class DateConverter {
         }
 
         return aux.getTime();
+    };
+
+    public static long dateToTimestamp (Date pDate){
+        return pDate.getTime();
+    }
+
+    public static long sysdateToTimestamp(){
+        return dateToTimestamp(Calendar.getInstance().getTime());
     };
 }

@@ -23,6 +23,7 @@
         <activity android:name=".Activity.HomeActivity"></activity>
         <activity android:name=".Activity.UseActivity"></activity>
         <activity android:name=".Activity.AlternativaActivity"></activity>
+        <service android:name=".Service.NotificationService" />
     </application>
 
 </manifest>
