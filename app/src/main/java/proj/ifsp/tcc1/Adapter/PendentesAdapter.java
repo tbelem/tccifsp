@@ -45,6 +45,10 @@ public class PendentesAdapter extends BaseAdapter {
         return 0;
     }
 
+    public String getStringId(int pos) {
+        return pendentes.get(pos).getId();
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View item_layout = activity.getLayoutInflater().inflate(R.layout.pendentes_item,viewGroup,false);

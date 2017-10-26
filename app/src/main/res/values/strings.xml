@@ -24,6 +24,12 @@
     <string name="txDeposito">Depósito Bancário</string>
     <string name="txEscolha">Escolha uma opção:</string>
 
+    <!-- Questionario Activity -->
+    <string name="btVoltar">Voltar</string>
+    <string name="btIniciar">Iniciar</string>
+    <string name="txSobre">Sobre o Questionário ...</string>
+    <string name="txDescricaoDefault">Esse questionário é anônimo. Ou seja, o aplicador não terá acesso ao usuário que efetuou as respostas, bem como o usuário não saberá quem é o aplicador responsável pelo questionário.</string>
+
     <!-- Alternativa Activity -->
     <string name="btAnterior">&lt; Anterior</string>
     <string name="btProximo">Proximo &gt;</string>

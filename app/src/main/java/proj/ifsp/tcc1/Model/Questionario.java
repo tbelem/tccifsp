@@ -9,6 +9,7 @@ import java.util.Date;
 public class Questionario {
 
     private String id;
+    private String descricao;
     private long inicio;
     private long fim;
     private int recompensa;
@@ -22,6 +23,10 @@ public class Questionario {
         this.fim = fim;
         this.recompensa = recompensa;
     }
+
+    public String getDescricao() { return descricao; }
+
+    public void setDescricao(String descricao) { this.descricao = descricao; }
 
     public String getId() {
         return id;

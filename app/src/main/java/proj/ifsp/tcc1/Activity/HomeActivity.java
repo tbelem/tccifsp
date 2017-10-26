@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,6 +72,20 @@ public class HomeActivity extends AppCompatActivity {
 
         pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("pendentes");
         montaListenerPendentes();
+
+        pendentesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Questionario selecionado = (Questionario) adapterView.getItemAtPosition(i);
+
+                Intent questIntent = new Intent(HomeActivity.this,QuestionarioActivity.class);
+
+                questIntent.putExtra("selecionadoID",selecionado.getId());
+
+                startActivity(questIntent);
+            }
+        });
 
     }
 
