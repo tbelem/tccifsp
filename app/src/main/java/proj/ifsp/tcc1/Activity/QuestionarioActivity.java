@@ -1,5 +1,6 @@
 package proj.ifsp.tcc1.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class QuestionarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionario);
 
-        txtDescricao = (TextView) findViewById(R.id.txDescricao);
+        txtDescricao = (TextView) findViewById(R.id.txQuestao);
 
         buscaQuestionario(this.getIntent().getStringExtra("selecionadoID"));
     }
@@ -62,6 +63,41 @@ public class QuestionarioActivity extends AppCompatActivity {
 
     public void Voltar (View v){
         finish();
+    }
+
+    public void Iniciar (View v){
+
+        if (questionario != null){
+
+            DatabaseReference query = InstanceFactory.getDBInstance().getReference("questoes").child(questionario.getId());
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    long count = dataSnapshot.getChildrenCount();
+
+                    if (count > 0 ){
+                        Intent questao = new Intent(QuestionarioActivity.this, AlternativaActivity.class);
+
+                        questao.putExtra("questionario",questionario.getId());
+                        questao.putExtra("questaoSequence",1);
+                        questao.putExtra("usuario",InstanceFactory.getAuthInstance().getCurrentUser().getUid());
+                        questao.putExtra("qtdQuestoes",count);
+
+                        startActivity(questao);
+                        finish();
+                    }
+                    else {
+                        Log.e("DATABASE ERROR","O questionario nao possui nenhuma questao !");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("DATABASE ERROR",databaseError.toString());
+                }
+            });
+        }
     }
 
 }

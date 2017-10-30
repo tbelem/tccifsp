@@ -13,7 +13,7 @@
         tools:context="proj.ifsp.tcc1.Activity.QuestionarioActivity">
 
         <TextView
-            android:id="@+id/txDescricao"
+            android:id="@+id/txQuestao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
@@ -68,7 +68,7 @@
             android:onClick="Voltar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/txDescricao"
+            app:layout_constraintTop_toBottomOf="@+id/txQuestao"
             app:layout_constraintVertical_bias="0.14" />
 
         <Button
@@ -79,11 +79,12 @@
             android:layout_marginEnd="0dp"
             android:layout_marginTop="0dp"
             android:backgroundTint="@color/colorSecondaryDark"
+            android:onClick="Iniciar"
             android:text="@string/btIniciar"
             android:textColor="@color/colorTextSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/txDescricao"
+            app:layout_constraintTop_toBottomOf="@+id/txQuestao"
             app:layout_constraintVertical_bias="0.14" />
 
     </android.support.constraint.ConstraintLayout>

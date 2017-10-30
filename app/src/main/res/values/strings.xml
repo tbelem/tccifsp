@@ -32,7 +32,8 @@
 
     <!-- Alternativa Activity -->
     <string name="btAnterior">&lt; Anterior</string>
-    <string name="btProximo">Proximo &gt;</string>
+    <string name="btProxima">Proxima &gt;</string>
+    <string name="btConcluir">Concluir</string>
     <string name="textoTeste">Como você avalia sua experiência geral na última vez que você visitou o Instituto Federal de São Paulo ?</string>
 
 
