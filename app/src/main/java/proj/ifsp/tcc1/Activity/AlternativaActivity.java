@@ -1,5 +1,6 @@
 package proj.ifsp.tcc1.Activity;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class AlternativaActivity extends AppCompatActivity {
     private String questionarioID;
     private int questaoSequence;
     private String usuarioUID;
-    private int qtdQuestoes;
+    private long qtdQuestoes;
 
     private Questao questao;
 
@@ -57,7 +58,7 @@ public class AlternativaActivity extends AppCompatActivity {
         questionarioID = this.getIntent().getStringExtra("questionario");
         questaoSequence = this.getIntent().getIntExtra("questaoSequence",0);
         usuarioUID = this.getIntent().getStringExtra("usuario");
-        qtdQuestoes = this.getIntent().getIntExtra("qtdQuestoes",0);
+        qtdQuestoes = this.getIntent().getLongExtra("qtdQuestoes",0);
 
         respostaAtual = -1;
 
@@ -119,6 +120,7 @@ public class AlternativaActivity extends AppCompatActivity {
         }
 
         if (questaoSequence == qtdQuestoes){
+            Log.d("ultimaTeste","Ultima questao !");
             btnProxima.setEnabled(false);
             btnProxima.setVisibility(View.INVISIBLE);
             btnConcluir.setEnabled(true);
@@ -145,8 +147,7 @@ public class AlternativaActivity extends AppCompatActivity {
 
                     for (DataSnapshot row : dataSnapshot.getChildren()){
                         if(count > 1){
-                            /*DELETA*/
-                            Log.d("respostaLog","Delete "+row.toString());
+                            deletaResposta(Integer.parseInt(row.getKey()));
                         }
                         else {
                             respostaAtual = Integer.parseInt(row.getKey());
@@ -164,39 +165,62 @@ public class AlternativaActivity extends AppCompatActivity {
         });
     }
 
-    private void chamaAlternativa(int pSequence){
-        Log.d("respostaLog","Chama alternativa " + pSequence);
+    private void chamaAlternativa(String pDestino){
+
+        int proximaQuestao = 0;
+
+        if(pDestino.equals("PROXIMA")){
+            proximaQuestao = questaoSequence + 1;
+        }
+        else if(pDestino.equals("ANTERIOR")){
+            proximaQuestao = questaoSequence - 1;
+        }
+
+        Intent questao = new Intent(AlternativaActivity.this, AlternativaActivity.class);
+
+        questao.putExtra("questionario",questionarioID);
+        questao.putExtra("questaoSequence",proximaQuestao);
+        questao.putExtra("usuario",usuarioUID);
+        questao.putExtra("qtdQuestoes",qtdQuestoes);
+
+        startActivity(questao);
+        finish();
+    }
+
+    private void deletaResposta(int pResposta){
+        DatabaseReference node = InstanceFactory.getDBInstance().getReference("respostas").child(questionarioID).child(String.valueOf(questaoSequence));
+
+        node.child(String.valueOf(pResposta)).child(usuarioUID).removeValue();
     }
 
     private void salvaResposta(final String pDestino){
         DatabaseReference node = InstanceFactory.getDBInstance().getReference("respostas").child(questionarioID).child(String.valueOf(questaoSequence));
 
-        Log.d("respostaLog","Resposta: " + rdgAlternativas.getCheckedRadioButtonId());
-
         int resposta = rdgAlternativas.getCheckedRadioButtonId();
 
         if (resposta != -1) {
-            node.child(String.valueOf(resposta)).child(usuarioUID).setValue(true, new DatabaseReference.CompletionListener() {
-                @Override
-                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                    if (databaseError != null) {
-                        Toast erro = Toast.makeText(AlternativaActivity.this, "Erro ao salvar resposta !", Toast.LENGTH_LONG);
-                        erro.show();
-                    }
-                    else {
-                        if(pDestino.equals("PROXIMA")){
-                            chamaAlternativa(questaoSequence+1);
+            if (resposta == respostaAtual){
+                chamaAlternativa(pDestino);
+            }
+            else {
+                deletaResposta(respostaAtual);
+
+                node.child(String.valueOf(resposta)).child(usuarioUID).setValue(true, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if (databaseError != null) {
+                            Toast erro = Toast.makeText(AlternativaActivity.this, "Erro ao salvar resposta !", Toast.LENGTH_LONG);
+                            erro.show();
+                        } else {
+                            chamaAlternativa(pDestino);
                         }
-                        else if(pDestino.equals("ANTERIOR")){
-                            chamaAlternativa(questaoSequence-1);
-                        }
                     }
-                }
-            });
+                });
+            }
         }
         else{
             if(pDestino.equals("ANTERIOR")){
-                chamaAlternativa(questaoSequence-1);
+                chamaAlternativa(pDestino);
             }
         }
     }
