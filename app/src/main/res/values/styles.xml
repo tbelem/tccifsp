@@ -14,4 +14,16 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="Alternativa" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:radioButtonStyle">@style/AlternativaRadio</item>
+    </style>
+
+    <style name="AlternativaRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+
 </resources>

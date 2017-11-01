@@ -64,8 +64,6 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/LabelSize"
             app:layout_constraintLeft_toLeftOf="@+id/guideline4"
             app:layout_constraintRight_toLeftOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/txQuestao">
@@ -74,6 +72,8 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/LabelSize"
                 android:text="Há menos de 5 dias" />
 
             <RadioButton
@@ -116,6 +116,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="32dp"
+            android:onClick="alternativaAnterior"
             android:text="@string/btAnterior"
             app:layout_constraintLeft_toLeftOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/rgAlternativas" />
@@ -127,6 +128,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginEnd="0dp"
             android:layout_marginTop="32dp"
+            android:onClick="proximaAlternativa"
             android:text="@string/btProxima"
             app:layout_constraintRight_toLeftOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/rgAlternativas" />
