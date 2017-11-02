@@ -120,7 +120,6 @@ public class AlternativaActivity extends AppCompatActivity {
         }
 
         if (questaoSequence == qtdQuestoes){
-            Log.d("ultimaTeste","Ultima questao !");
             btnProxima.setEnabled(false);
             btnProxima.setVisibility(View.INVISIBLE);
             btnConcluir.setEnabled(true);
@@ -169,12 +168,26 @@ public class AlternativaActivity extends AppCompatActivity {
 
         int proximaQuestao = 0;
 
-        if(pDestino.equals("PROXIMA")){
+        Log.d("ultimaTeste","Começou...");
+
+        if (pDestino.equals("CONCLUIR")){
+            Intent recompensa = new Intent (AlternativaActivity.this, RecompensaActivity.class);
+
+            recompensa.putExtra("questionarioID",questionarioID);
+            recompensa.putExtra("usuarioID",usuarioUID);
+
+            startActivity(recompensa);
+            finish();
+            return;
+        }
+        else if (pDestino.equals("PROXIMA")){
             proximaQuestao = questaoSequence + 1;
         }
-        else if(pDestino.equals("ANTERIOR")){
+        else if (pDestino.equals("ANTERIOR")){
             proximaQuestao = questaoSequence - 1;
         }
+
+        Log.d("ultimaTeste","Nao parou !");
 
         Intent questao = new Intent(AlternativaActivity.this, AlternativaActivity.class);
 
@@ -239,5 +252,17 @@ public class AlternativaActivity extends AppCompatActivity {
 
     public void alternativaAnterior (View v){
         salvaResposta("ANTERIOR");
+    }
+
+    public void concluirQuestionario (View v){
+
+        if (rdgAlternativas.getCheckedRadioButtonId() == -1){
+            Toast erro = Toast.makeText(AlternativaActivity.this, "Escolha uma alternativa !", Toast.LENGTH_LONG);
+            erro.show();
+        }
+        else{
+            salvaResposta("CONCLUIR");
+        }
+
     }
 }

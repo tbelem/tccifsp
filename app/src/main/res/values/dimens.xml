@@ -2,6 +2,9 @@
 <resources>
     <dimen name="LogoWidth">150dp</dimen>
     <dimen name="LogoHeight">120dp</dimen>
+    <dimen name="BigText">30sp</dimen>
+    <dimen name="RecompText">60sp</dimen>
+    <dimen name="SmallText">15sp</dimen>
     <dimen name="titleSize">20sp</dimen>
     <dimen name="LabelSize">18sp</dimen>
     <dimen name="ListItemSize">30dp</dimen>

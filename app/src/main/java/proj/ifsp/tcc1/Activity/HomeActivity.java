@@ -146,6 +146,10 @@ public class HomeActivity extends AppCompatActivity {
 
                 pendentes.clear();
 
+                if(dataSnapshot.getChildrenCount() == 0){
+                    pa.notifyDataSetChanged();
+                }
+
                 for (DataSnapshot row : dataSnapshot.getChildren()){
 
                     DatabaseReference buscaQuestionario = InstanceFactory.getDBInstance().getReference("questionarios").child(row.getKey());
@@ -171,7 +175,6 @@ public class HomeActivity extends AppCompatActivity {
                     });
 
                 }
-
             }
 
             @Override

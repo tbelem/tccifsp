@@ -36,5 +36,10 @@
     <string name="btConcluir">Concluir</string>
     <string name="textoTeste">Como você avalia sua experiência geral na última vez que você visitou o Instituto Federal de São Paulo ?</string>
 
+    <!-- Recompensa Activity -->
+    <string name="txParabens">PARABÉNS</string>
+    <string name="txRecebimento">Você recebeu uma recompensa !</string>
+    <string name="txToque">Toque em qualquer lugar para continuar ...</string>
+
 
 </resources>

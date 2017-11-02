@@ -141,6 +141,7 @@
             android:layout_marginEnd="0dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/colorSecondaryDark"
+            android:onClick="concluirQuestionario"
             android:text="@string/btConcluir"
             android:textColor="@color/colorTextSecondary"
             android:visibility="invisible"
