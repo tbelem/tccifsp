@@ -41,5 +41,13 @@
     <string name="txRecebimento">Você recebeu uma recompensa !</string>
     <string name="txToque">Toque em qualquer lugar para continuar ...</string>
 
+    <!-- Dados Activity -->
+    <string name="txPrimeiroAcesso">Olá, seja bem vindo.\n\nComo esse é seu primeiro acesso, é preciso preencher o formulário abaixo para que você possa receber os questionários de acordo com seus dados.</string>
+    <string name="hintNascimento">25/01/1900</string>
+    <string name="lbNascimento">Data de Nascimento:</string>
+    <string name="lbEstado">Estado:</string>
+    <string name="lbCidade">Cidade:</string>
+    <string name="lbBairro">Bairro:</string>
+    <string name="btPronto">PRONTO</string>
 
 </resources>
