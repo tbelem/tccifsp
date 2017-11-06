@@ -35,6 +35,7 @@ import java.util.Locale;
 
 import proj.ifsp.tcc1.Adapter.PendentesAdapter;
 import proj.ifsp.tcc1.Model.Questionario;
+import proj.ifsp.tcc1.Model.Usuario;
 import proj.ifsp.tcc1.R;
 import proj.ifsp.tcc1.Service.NotificationService;
 import proj.ifsp.tcc1.Util.DateConverter;
@@ -54,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
     private ValueEventListener listenerSaldo;
     private ValueEventListener listenerPendentes;
 
+    private Usuario usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
         pendentesList = (ListView) findViewById(R.id.listPendentes);
 
         firebaseAuth = InstanceFactory.getAuthInstance();
+
+        validaPrimeiroAcesso(firebaseAuth.getCurrentUser().getUid());
 
         lblEmail.setText(firebaseAuth.getCurrentUser().getEmail());
 
@@ -106,9 +111,38 @@ public class HomeActivity extends AppCompatActivity {
         saldoReference.removeEventListener(listenerSaldo);
         pendentesReference.removeEventListener(listenerPendentes);
 
-        if (! NotificationService.running) {
+        if (! NotificationService.running && InstanceFactory.getAuthInstance().getCurrentUser() != null) {
             startService(new Intent(HomeActivity.this, NotificationService.class));
         }
+    }
+
+    private void validaPrimeiroAcesso(final String pUID){
+        DatabaseReference query = InstanceFactory.getDBInstance().getReference("usuarios").child(pUID);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot == null){
+                    Log.e("DATABASE ERROR","[HOME] Usuario nao encontrado !");
+                }
+                else{
+                    usuario = dataSnapshot.getValue(Usuario.class);
+                    usuario.setUID(pUID);
+
+                    if(usuario.getNascimento() == 0){
+                        Intent dados = new Intent(HomeActivity.this, DadosActivity.class);
+                        dados.putExtra("usuarioID",pUID);
+                        startActivity(dados);
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("DATABASE ERROR",databaseError.toString());
+            }
+        });
     }
 
     private void montaListenerSaldo(){

@@ -49,5 +49,6 @@
     <string name="lbCidade">Cidade:</string>
     <string name="lbBairro">Bairro:</string>
     <string name="btPronto">PRONTO</string>
+    <string name="hintSelecione">--Selecione--</string>
 
 </resources>

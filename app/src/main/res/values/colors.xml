@@ -9,4 +9,5 @@
     <color name="colorTextSecondary">#ffffff</color>
     <color name="creditColor">#ffd700</color>
     <color name="disabledLabel">#a4a4a4</color>
+    <color name="colorBgPrimary">#efefef</color>
 </resources>

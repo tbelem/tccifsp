@@ -28,7 +28,7 @@ public class DateConverter {
             aux = df.parse(pDate);
         }
         catch(Exception e){
-            e.printStackTrace();
+            return 0;
         }
 
         return aux.getTime();

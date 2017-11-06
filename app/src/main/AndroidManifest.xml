@@ -13,7 +13,11 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:theme="@style/Barless">
-            <!-- MAIN AQUI -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.UseActivity" />
@@ -25,13 +29,7 @@
 
         <activity android:name=".Activity.QuestionarioActivity" />
         <activity android:name=".Activity.RecompensaActivity" />
-        <activity android:name=".Activity.DadosActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.DadosActivity" />
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         txtEmail = (EditText) findViewById(R.id.txEmail);
         txtSenha = (EditText) findViewById(R.id.txSenha);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
