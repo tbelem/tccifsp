@@ -5,7 +5,7 @@
     <color name="colorAccent">#152370</color>
     <color name="colorSecondary">#22761e</color>
     <color name="colorSecondaryDark">#11390f</color>
-    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextSecondary">#ffffff</color>
     <color name="creditColor">#ffd700</color>
     <color name="disabledLabel">#a4a4a4</color>

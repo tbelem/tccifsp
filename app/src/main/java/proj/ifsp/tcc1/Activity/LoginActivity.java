@@ -87,4 +87,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void chamarCadstro(View v){
+
+        Intent cadastro = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(cadastro);
+        finish();
+
+    }
 }

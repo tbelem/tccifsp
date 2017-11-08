@@ -10,7 +10,6 @@ public class Usuario {
 
     private String UID;
     private String email;
-    private String senha;
     private long nascimento;
     private Questionario[] pendentes;
     private String estado;
@@ -24,12 +23,12 @@ public class Usuario {
     public Usuario(String UID, String email) {
         this.UID = UID;
         this.email = email;
+        this.nascimento = 0;
+        this.estado = "";
+        this.cidade = "";
+        this.bairro = "";
+        this.saldo = 0;
     }
-
-    @Exclude
-    public String getSenha() { return senha; }
-
-    public void setSenha(String senha) { this.senha = senha;  }
 
     public int getSaldo() { return saldo;  }
 

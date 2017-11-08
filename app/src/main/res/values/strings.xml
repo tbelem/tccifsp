@@ -51,4 +51,9 @@
     <string name="btPronto">PRONTO</string>
     <string name="hintSelecione">--Selecione--</string>
 
+    <!-- Cadastro Activity -->
+    <string name="cadastroTitle">CADASTRE-SE</string>
+    <string name="hintConfirmacao">Confirme sua senha</string>
+    <string name="btEnviar">ENVIAR</string>
+
 </resources>

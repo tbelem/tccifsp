@@ -30,6 +30,9 @@
         <activity android:name=".Activity.QuestionarioActivity" />
         <activity android:name=".Activity.RecompensaActivity" />
         <activity android:name=".Activity.DadosActivity" />
+        <activity android:name=".Activity.CadastroActivity"
+                  android:theme="@style/Barless">
+        </activity>
     </application>
 
 </manifest>
