@@ -186,7 +186,8 @@ public class HomeActivity extends AppCompatActivity {
 
                 for (DataSnapshot row : dataSnapshot.getChildren()){
 
-                    DatabaseReference buscaQuestionario = InstanceFactory.getDBInstance().getReference("questionarios").child(row.getKey());
+                    DatabaseReference buscaQuestionario = InstanceFactory.getDBInstance()
+                            .getReference("questionarios").child(row.getKey());
 
                     buscaQuestionario.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

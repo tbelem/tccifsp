@@ -51,7 +51,8 @@ public class NotificationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         if(!running) {
-            pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios").child(InstanceFactory.getAuthInstance().getCurrentUser().getUid()).child("pendentes");
+            pendentesReference = InstanceFactory.getDBInstance().getReference("usuarios")
+                    .child(InstanceFactory.getAuthInstance().getCurrentUser().getUid()).child("pendentes");
             montaListenerNovoAdded();
             pendentesReference.orderByValue().startAt(DateConverter.sysdateToTimestamp()).addChildEventListener(listenerNovoAdded);
 

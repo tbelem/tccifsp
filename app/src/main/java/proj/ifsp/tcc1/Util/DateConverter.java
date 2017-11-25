@@ -1,5 +1,7 @@
 package proj.ifsp.tcc1.Util;
 
+import android.util.Log;
+
 import java.security.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,23 +24,41 @@ public class DateConverter {
     public static long stringDateToTimestamp (String pDate){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-        Date aux = new Date(1);
+        Calendar cal = Calendar.getInstance();
 
         try {
-            aux = df.parse(pDate);
+            cal.setTime(df.parse(pDate));
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
         }
         catch(Exception e){
             return 0;
         }
 
-        return aux.getTime();
+        return cal.getTimeInMillis();
     };
 
     public static long dateToTimestamp (Date pDate){
-        return pDate.getTime();
+
+        Calendar cal = Calendar.getInstance();
+
+        try {
+            cal.setTime(pDate);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
+        }
+        catch(Exception e){
+            return 0;
+        }
+
+        return cal.getTimeInMillis();
     }
 
     public static long sysdateToTimestamp(){
-        return dateToTimestamp(Calendar.getInstance().getTime());
+        return Calendar.getInstance().getTimeInMillis();
     };
 }
