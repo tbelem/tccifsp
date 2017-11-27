@@ -55,6 +55,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    public class retornaDados{
+
+        private Usuario usuarioRetorno;
+
+        public Usuario retornaUsuarioPeloID (String pUID){
+
+            DatabaseReference query = InstanceFactory.getDBInstance().getReference("usuarios");
+
+            query.child(pUID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    usuarioRetorno = dataSnapshot.getValue(Usuario.class);
+                    usuarioRetorno.setUID(dataSnapshot.getKey());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //ERRO
+                }
+            });
+
+            return usuarioRetorno;
+
+        }
+
+    }
+
     private TextView txtCount;
     private TextView txtTotal;
 
@@ -80,12 +108,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //bh();
+
     }
 
     public void begin (View v){
         Toast.makeText(MainActivity.this, "BEGIN...", Toast.LENGTH_SHORT).show();
 
         final Regiao[] regioes = new Regiao[27];
+
+        //regioes[0] = new Regiao("SP","","");
+        //regioes[1] = new Regiao("MG","","");
 
         regioes[0] = new Regiao("MG","","");
         regioes[1] = new Regiao("SP","","");
@@ -128,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
         long menor = DateConverter.stringDateToTimestamp("26/11/1956"); // 01/11/1967
 
         DatabaseReference node = InstanceFactory.getDBInstance().getReference("usuarios");
+
+        Log.d("Takipariu","Sibooora");
 
         node.orderByChild("nascimento").startAt(menor).endAt(maior).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -182,21 +217,28 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference user = InstanceFactory.getDBInstance().getReference("usuarios");
 
-        user.child(pUID).child("pendentes").child(pQuest).setValue(DateConverter.sysdateToTimestamp());
+        user.child(pUID).child("pendentes").child(pQuest).setValue(DateConverter.sysdateToTimestamp(),new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null){
+                    Log.d("Takipariu",databaseError.toString());
+                }
+            }
+        });
     }
 
     /*public void bh (){
 
         DatabaseReference node = InstanceFactory.getDBInstance().getReference("usuarios");
 
-        for(int i = 100001;i<=100010;i++){
+        for(int i = 50001;i<=50010;i++){
             Usuario aux = new Usuario(String.valueOf(i),"teste"+i+"@example.com");
 
             aux.setEstado("MG");
             aux.setCidade("Belo Horizonte");
             aux.setBairro("Centro");
 
-            if(i >= 100006){
+            if(i >= 50006){
                 aux.setNascimento(DateConverter.stringDateToTimestamp("01/11/1987"));
             }
             else{
