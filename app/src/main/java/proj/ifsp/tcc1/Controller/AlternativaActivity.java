@@ -1,12 +1,10 @@
-package proj.ifsp.tcc1.Activity;
+package proj.ifsp.tcc1.Controller;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,8 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import proj.ifsp.tcc1.Model.Alternativa;
 import proj.ifsp.tcc1.Model.Questao;

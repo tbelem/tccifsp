@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="proj.ifsp.tcc1.Activity.RecompensaActivity"
+    tools:context="proj.ifsp.tcc1.Controller.RecompensaActivity"
     android:id="@+id/recompensaLayout">
 
     <TextView

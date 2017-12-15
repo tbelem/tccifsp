@@ -1,7 +1,6 @@
-package proj.ifsp.tcc1.Activity;
+package proj.ifsp.tcc1.Controller;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import proj.ifsp.tcc1.R;
 import proj.ifsp.tcc1.Util.InstanceFactory;
+import proj.ifsp.tcc1.Util.PreferencesHelper;
 
 public class LoginActivity extends AppCompatActivity {
 

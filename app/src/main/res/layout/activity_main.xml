@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="proj.ifsp.tcc1.Activity.MainActivity">
+    tools:context="proj.ifsp.tcc1.Controller.MainActivity">
 
     <Button
         android:id="@+id/button2"

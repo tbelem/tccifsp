@@ -1,8 +1,6 @@
-package proj.ifsp.tcc1.Activity;
+package proj.ifsp.tcc1.Controller;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,25 +11,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import proj.ifsp.tcc1.Model.Questionario;
 import proj.ifsp.tcc1.Model.Usuario;
 import proj.ifsp.tcc1.R;
 import proj.ifsp.tcc1.Util.DateConverter;
@@ -53,34 +37,6 @@ public class MainActivity extends AppCompatActivity {
         public String toString(){
             return estado + " " + cidade + " " + bairro;
         }
-    }
-
-
-    public class retornaDados{
-
-        private Usuario usuarioRetorno;
-
-        public Usuario retornaUsuarioPeloID (String pUID){
-
-            DatabaseReference query = InstanceFactory.getDBInstance().getReference("usuarios");
-
-            query.child(pUID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    usuarioRetorno = dataSnapshot.getValue(Usuario.class);
-                    usuarioRetorno.setUID(dataSnapshot.getKey());
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    //ERRO
-                }
-            });
-
-            return usuarioRetorno;
-
-        }
-
     }
 
     private TextView txtCount;
@@ -109,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //bh();
+        //insereQuestionario();
 
     }
 
@@ -249,6 +206,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Toast.makeText(MainActivity.this, "FIM.", Toast.LENGTH_SHORT).show();
+
+    }*/
+
+    /*public void insereQuestionario(){
+
+        DatabaseReference node = InstanceFactory.getDBInstance().getReference("questionarios");
+
+        Questionario quest = new Questionario();
+
+        quest.setDescricao("Questionario anônimo e rápido");
+        quest.setInicio(DateConverter.stringDateToTimestamp("01/10/2017"));
+        quest.setFim(DateConverter.stringDateToTimestamp("20/12/2017"));
+        quest.setRecompensa(25);
+
+        node.push().setValue(quest);
 
     }*/
 }

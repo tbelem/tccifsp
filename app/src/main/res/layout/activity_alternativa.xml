@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="proj.ifsp.tcc1.Activity.AlternativaActivity">
+    tools:context="proj.ifsp.tcc1.Controller.AlternativaActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="proj.ifsp.tcc1.Activity.AlternativaActivity">
+        tools:context="proj.ifsp.tcc1.Controller.AlternativaActivity">
 
         <TextView
             android:id="@+id/txQuestao"

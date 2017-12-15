@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="proj.ifsp.tcc1.Activity.DadosActivity">
+    tools:context="proj.ifsp.tcc1.Controller.DadosActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintDados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="proj.ifsp.tcc1.Activity.DadosActivity">
+        tools:context="proj.ifsp.tcc1.Controller.DadosActivity">
 
         <TextView
             android:id="@+id/lbPrimeiroAcesso"

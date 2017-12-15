@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="proj.ifsp.tcc1.Activity.CadastroActivity">
+    tools:context="proj.ifsp.tcc1.Controller.CadastroActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        tools:context="proj.ifsp.tcc1.Activity.CadastroActivity">
+        tools:context="proj.ifsp.tcc1.Controller.CadastroActivity">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline10"

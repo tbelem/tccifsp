@@ -1,4 +1,4 @@
-package proj.ifsp.tcc1.Activity;
+package proj.ifsp.tcc1.Controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

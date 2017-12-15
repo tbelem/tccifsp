@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="proj.ifsp.tcc1.Activity.LoginActivity">
+    tools:context="proj.ifsp.tcc1.Controller.LoginActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="proj.ifsp.tcc1.Activity.LoginActivity">
+        tools:context="proj.ifsp.tcc1.Controller.LoginActivity">
 
         <ImageView
             android:id="@+id/imageView"

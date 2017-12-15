@@ -1,45 +1,29 @@
-package proj.ifsp.tcc1.Activity;
+package proj.ifsp.tcc1.Controller;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Locale;
 
 import proj.ifsp.tcc1.Adapter.PendentesAdapter;
 import proj.ifsp.tcc1.Model.Questionario;
 import proj.ifsp.tcc1.Model.Usuario;
 import proj.ifsp.tcc1.R;
 import proj.ifsp.tcc1.Service.NotificationService;
-import proj.ifsp.tcc1.Util.DateConverter;
 import proj.ifsp.tcc1.Util.InstanceFactory;
+import proj.ifsp.tcc1.Util.PreferencesHelper;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -72,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         lblEmail.setText(firebaseAuth.getCurrentUser().getEmail());
 
+        lblSaldoValor.setText(String.valueOf(PreferencesHelper.getIntPreference(getApplicationContext(),"userSaldo")));
         saldoReference = InstanceFactory.getDBInstance().getReference("usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("saldo");
         montaListenerSaldo();
 
@@ -151,11 +136,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() != null) {
-                    lblSaldoValor.setText(String.valueOf(dataSnapshot.getValue()));
+                    int saldo = Integer.parseInt(dataSnapshot.getValue().toString());
+                    lblSaldoValor.setText(String.valueOf(saldo));
+                    PreferencesHelper.saveIntPrefence(getApplicationContext(),"userSaldo",saldo);
                 }
                 else{
                     Log.e("DATABASE ERROR","Saldo nao encontrado");
-                    lblSaldoValor.setText(String.valueOf(0));
                 }
             }
 

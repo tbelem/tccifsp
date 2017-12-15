@@ -9,10 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MainActivity">
-        </activity>
+        <activity android:name=".Controller.MainActivity"></activity>
         <activity
-            android:name=".Activity.LoginActivity"
+            android:name=".Controller.LoginActivity"
             android:theme="@style/Barless">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,19 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.HomeActivity" />
-        <activity android:name=".Activity.UseActivity" />
+        <activity android:name=".Controller.HomeActivity" />
+        <activity android:name=".Controller.UseActivity" />
         <activity
-            android:name=".Activity.AlternativaActivity"
+            android:name=".Controller.AlternativaActivity"
             android:theme="@style/Alternativa" />
 
         <service android:name=".Service.NotificationService" />
 
-        <activity android:name=".Activity.QuestionarioActivity" />
-        <activity android:name=".Activity.RecompensaActivity" />
-        <activity android:name=".Activity.DadosActivity" />
-        <activity android:name=".Activity.CadastroActivity"
-                  android:theme="@style/Barless">
+        <activity android:name=".Controller.QuestionarioActivity" />
+        <activity android:name=".Controller.RecompensaActivity" />
+        <activity android:name=".Controller.DadosActivity" />
+        <activity
+            android:name=".Controller.CadastroActivity"
+            android:theme="@style/Barless"></activity>
+        <activity
+            android:name=".Controller.SplashActivity"
+            android:theme="@style/Barless">
         </activity>
     </application>
 

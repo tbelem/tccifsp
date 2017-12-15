@@ -6,7 +6,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -17,7 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
-import proj.ifsp.tcc1.Activity.LoginActivity;
+import proj.ifsp.tcc1.Controller.LoginActivity;
 import proj.ifsp.tcc1.R;
 import proj.ifsp.tcc1.Util.DateConverter;
 import proj.ifsp.tcc1.Util.InstanceFactory;
